@@ -1,0 +1,48 @@
+
+<script>
+/*
+1. 归并排序
+a. 2个，2部分比较大小排序合并
+b. 4个，2部分比较大小排序合并，以最左边数的比较大小排序
+...log2N 次后结束
+*/
+
+
+/*
+单次归并
+1. 左右两个指针，比较指针所在的数，小则放入新数组。
+2. 直到一侧指针移到末尾后(一定会出现某侧指针移先到末尾)，则将另一侧的指针的数全部放入新数组
+
+*/
+function guibin(arr){
+	
+	var half = arr.length%2 == 0 ?  arr.length/2:(arr.length+1)/2 ;
+	var narr = [];
+	var lIndex = 0;
+	var rIndex = half;
+	
+	do{
+		
+			if(lIndex == half){   //左指针移到末尾
+				
+				narr[narr.length] = arr[rIndex++];
+				
+			}else if(rIndex == arr.length){ //右指针移到末尾
+				
+				narr[narr.length] = arr[lIndex++];
+			}else {                         //左右指针都没有到末尾         
+				
+				narr[narr.length] = arr[lIndex] < arr[rIndex] ? arr[lIndex++] : arr[rIndex++];
+			}
+		
+			
+		 
+	}while(lIndex != half || rIndex != arr.length ); //左右指针都到末尾了
+		
+	
+	return narr;
+	
+}
+console.log(343232432);
+console.log(guibin([4,6,3,7]));
+</script>
