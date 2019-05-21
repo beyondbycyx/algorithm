@@ -146,4 +146,62 @@ function copyArr(f,len,arr){
 	return na;
 }
 
+//堆排序
+//1.所有的数堆整理  
+//2.取出最前面的数(即最大的数)移动最后面  
+//3.重新对前面的数堆整理
+//4.重复步骤2，3 直到最前面的数和最前面第二个数交换
+//arrHeap2([4,5,6,1,2,3,7],6)
+
+function heapSort(arr){
+
+	//所有的数堆排序
+	arrHeap2(arr, arr.length - 1);
+    
+    for(var i = arr.length -1 ; i>0;i--){
+
+    	var tmp = arr[i];
+    	arr[i] = arr[0];
+    	arr[0] = tmp;
+
+    	//重新堆排序
+    	arrHeap2(arr,i-1);
+    }
+
+    return arr;
+}
+//对数组进行堆的整理 2.0
+function arrHeap2(arr, end){
+
+   for(var i=1;i<=end; i++){
+
+   	 	while(swapKid(arr,i)){
+
+   	 		var p = (i%2 == 0? i-2: i-1)/2 ;
+   	 		if(p == 0){
+   	 			break;
+   	 		}else {
+   	 			swapKid(arr,p);
+   	 		}
+   	 	}
+   	}
+
+    return arr;
+}
+
+function swapKid(arr,i){
+
+     var p = (i%2 == 0? i-2: i-1)/2 ;
+
+     if(arr[p]<arr[i]){
+
+     	var tmp = arr[i];
+     	arr[i] = arr[p];
+     	arr[p] = tmp;
+     	return true;	
+     }
+
+     return false;
+
+}
 
